@@ -1,0 +1,29 @@
+SQL - Bases de datos relacionales
+
+Relational Data Base Managment System - Software para gestionar bases de datos como My SQL, Postgress MaríaDB, Oralce, Informix, etc.
+Entre sus funcionalidades incluye entregar un acceso fácil a una base de datos, se encarga de la seguridad e integridad de los datos,
+del respaldo de bases de datos, ixpotar e importar datos, la concurriencia que es cuando más de una conexión intenta acceder a la BD.
+Otra funcionalidad particular es que se puede
+
+Operaciones CRUD (Create Read Update Delete) -> Consulta (Query) 
+
+Tipos de relaciones.
+
+    Las bases de datos relacionales SQL, son del tipo tabuladas; por ejemplo si realizaramos un registro de prodictos, la 
+    tabla tendría un encabezado con las columnas ID producto(que es un número automático y autoincremental), Producto, stock e ID Usuario 
+    que es quién creo el registro. A los datos ingresados en cada fila se lo conoce como registro y dentro de cada registro hay un dato. 
+    El ID Usuario, es la manera de relacionar la tabla productos con la tabla de Usuarios. Se utiliza el ID del registro de la base de
+    datos para evitar duplicar datos y para ahorrar espacio en memoria. Este tipo de realcion es "1 -> n" dónde un usuario puede haber 
+    creado muchos productos pero un producto sólo puedo ser creado por un usuarios. 
+    Para que un usuario sea relacionado con más de un dato, es necesario crear una tercera tabla dónde se incluyan los ID de los registros
+    independientes. Por ejemplo, para un Usuario que hace varios deportes en un club; se hace una tabla dónde se relaciona el ID usuario con
+    el ID depote, así hay dos registros del mismo ID usuario pero con diferente ID de deporte. A esta reación se la conoce como "n <-> n";
+    es decir un alumno se puede inscribir a muchos deportes y los deportes pueden tener muchos alumno.
+
+Tipos de ID:
+    Primary Key (llave primaria): Es el ID primario del propio registro.
+    Foreing Key (Llave foránea): Son los ID que se encuentran dentro de la tabla haciendo referencia a otro registro.
+
+
+SQL Workbench
+    Se encarga de encontrar automáticamente los servicios que se encuentan corriendo en nuestra máquina
