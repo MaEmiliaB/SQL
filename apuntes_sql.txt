@@ -24,6 +24,77 @@ Tipos de ID:
     Primary Key (llave primaria): Es el ID primario del propio registro.
     Foreing Key (Llave foránea): Son los ID que se encuentran dentro de la tabla haciendo referencia a otro registro.
 
+Instalr MySql
 
-SQL Workbench
-    Se encarga de encontrar automáticamente los servicios que se encuentan corriendo en nuestra máquina
+MySQL Workbench
+    Se encarga de encontrar automáticamente los servicios que se encuentan corriendo en nuestra máquina.
+    Estando en la aplicación lo que hay que hacer es crear una base de datos, la cual va a contener muchas tablas.
+    Comando para crar base de datos: 
+        create database + nombre;
+        (Para ejecutar la base de datos hay que hacer click en el icono del rayo)
+    Comando para mostrar todas las bases de datos disponibles:
+        show databases;    
+    Comando para usar base de datos:
+        use + nombre de base de datos.    
+    Comando para crear una tabla:
+            CRATE TABLE + nombre + (
+            id int,
+            columna2 varchar (longitud del texto),
+            columna3 varchar (255),
+            PRIMARY KEY (id),
+         );    
+
+            Ejemplo:
+                    CREATE TABLE animales (
+                    id int,
+                    tipo varchar(255),
+                    estado varchar(255),
+                    PRIMARY KEY (id)
+                    );
+         Para crear las columnas de la tabla, se escribe enntre los paréntesis el nombre de la columna seguido de el tipo de dato y la longitud
+         entre parèntesis, id generalmente es para que el dato sea irrepetiblen o sea una primary key; es encesario indicarla en la tabla. 
+         para poder ejecutar la tabla, hay que indicar que base de datos es la que se desea utilizar con el comando use + nombre de base de datos.
+
+         Tipos de datos para columnas:
+            int -> integer
+            varchar -> 'Cadena de texto'
+    Comando para insetar datos en la tabla:
+        INSER INTO + nombre de la tabla (columnas en las que queremos agregar datos ) VALUES (valores de cada columna separado por coma)
+            ej:
+                INSERT INTO animales (tipo, estado) VALUES (chanchito, feliz)
+
+                Esto arrojara un error porque la columna id se encuentra vacía, es necesario indicar que es un valor autoincremental.
+                se hace con el comando para editar la tabla 
+    Comando para editar la tabla ya creada:
+        ALTER TABLE + nombre de la tabla + MODIFY COLUMN + nombre de columna + tipo + auto_increment;
+
+        Ejemplo:
+            ALTER TABLE animales MODIFY COLUMN id int auto_increment;
+    Comando para obtener el comando para crear una tabla desde el comienzo y que ya venga con el valor autoincremental:
+        SHOW CREATE TABLE animales;          
+            Luego copiar el comando que sale debajo y pegarlo para ejecutar:
+                    CREATE TABLE `animales` (
+                    `id` int NOT NULL AUTO_INCREMENT,
+                    `tipo` varchar(255) DEFAULT NULL,
+                    `estado` varchar(255) DEFAULT NULL,
+                    PRIMARY KEY (`id`)
+                    );
+    Comando para mostrar elementos de una tabla y modificaralos:
+        SELECT * FROM + nombre de la tabla;
+        ej: SELECT * FROM animales;
+    Comando para mostrar un registro:   
+        SELECT * FROM + nombre de la tabla + WHERE columna = dato;  
+        ej: SELECT * FROM animales WHERE id = 1;
+            SELECT * FROM animales WHERE estado = 'feliz' AND tipo = 'chanchito';   
+    Actualizar los registros dentro de la base de datos:
+        UPDATE + tabla + SET + columna = nuevo valor where columna = valor definido;
+        ej:  UPDATE animales SET estado = 'feliz' WHERE id = 3;
+    Eliminar un registro:
+        DELETE FROM tabla WHERE Columna = dato; (esto arroja un error porque MySQL tiene un modo seguro, hay que desactivarlo)
+        ej: DELETE from animales where estado = 'feliz';
+            DELETE from animales where id = 1; 
+
+
+Atajos y más:
+    - Para ejecutar la consulta de la línea de código usar ctl + enter
+    - Para comentar una línea usar dos guiones al principio de la misma (--)
