@@ -58,6 +58,7 @@ MySQL Workbench
          Tipos de datos para columnas:
             int -> integer
             varchar -> 'Cadena de texto'
+CONSULTAS:            
     Comando para insetar datos en la tabla:
         INSER INTO + nombre de la tabla (columnas en las que queremos agregar datos ) VALUES (valores de cada columna separado por coma)
             ej:
@@ -67,9 +68,10 @@ MySQL Workbench
                 se hace con el comando para editar la tabla 
     Comando para editar la tabla ya creada:
         ALTER TABLE + nombre de la tabla + MODIFY COLUMN + nombre de columna + tipo + auto_increment;
-
-        Ejemplo:
-            ALTER TABLE animales MODIFY COLUMN id int auto_increment;
+    Ejemplo:
+        ALTER TABLE animales MODIFY COLUMN id int auto_increment;
+    Comando para renombrar una tabla ya creada:
+        RENAME TABLE + nombre de la tabla TO + nombre nuevo;
     Comando para obtener el comando para crear una tabla desde el comienzo y que ya venga con el valor autoincremental:
         SHOW CREATE TABLE animales;          
             Luego copiar el comando que sale debajo y pegarlo para ejecutar:
@@ -82,7 +84,33 @@ MySQL Workbench
     Comando para mostrar elementos de una tabla y modificaralos:
         SELECT * FROM + nombre de la tabla;
         ej: SELECT * FROM animales;
-    Comando para mostrar un registro:   
+    Comando para limitar la cantidad de registros:
+        SELECT * FROM + nombre de la tabla + limit 1;
+    Comando para hacer una consuta entre dos valores:
+        SELECT * FROM + nombre de la tabla + between + valor1 + and + valor2; 
+    Comando para hacer una consuta para datos que contengan el valor determinado:   
+        SELECT * FROM + nombre de la tabla + WHERE + columna + like + %valor2%;  
+            El % indica que no importa como empiece otermine el dato, siempre que contenga ese valo, si se encuentra solo al principio, es
+            porque no importa como empiece pero si que temrmine coomo el dato ingresado; si se encuentra al final  lo mismo; si no esta el %
+            el dato a consutlar es tal cual está escrito.
+    Comando para hacer una consuta para datos que contengan el valor amyor o menor que: 
+        SELECT * FROM + nombre de la tabla + WHERE + columna > valor;   
+        SELECT * FROM + nombre de la tabla + WHERE + columna < valor;  
+    Comando para hacer una consuta para datos que contengan el ,enor o mayor valor:  
+        SELECT max(columna) as mayor + from + nombre de la tabla;  
+        SELECT min(columna) as menor + from + nombre de la tabla;    
+    Comando para hacer una consuta para datos que contengan el valor mayor o ogual o menor o igual que: 
+        SELECT * FROM + nombre de la tabla + WHERE + columna >= valor;   
+        SELECT * FROM + nombre de la tabla + WHERE + columna <= valor;          
+    Comando para hacer una consuta para datos que contengan el valor distinto que:
+        SELECT * FROM + nombre de la tabla + WHERE + columna =! valor;       
+    Comando para mostrar los registros en orden:
+        SELECT * FROM + nombre de la tabla + order by + columna + asc; (para mostrar los registros de forma ascendente)
+        SELECT * FROM + nombre de la tabla + order by + columna + desc; (para mostrar los registros de forma descendente) 
+    Comando para mostrar los registros de las columnas de interes:            
+        SELEC columna1, columna2 + from + nombre de las tabla;
+        ej: SELECT id, name as nombre from user; (de esta manera entregamos un alias a las columnas cuando hacemos consultas)
+    Comando para mostrar un registro determinado:   
         SELECT * FROM + nombre de la tabla + WHERE columna = dato;  
         ej: SELECT * FROM animales WHERE id = 1;
             SELECT * FROM animales WHERE estado = 'feliz' AND tipo = 'chanchito';   
@@ -93,8 +121,24 @@ MySQL Workbench
         DELETE FROM tabla WHERE Columna = dato; (esto arroja un error porque MySQL tiene un modo seguro, hay que desactivarlo)
         ej: DELETE from animales where estado = 'feliz';
             DELETE from animales where id = 1; 
+JOIN
+    Consiste en unir dos tablas relacionandolas. Es necesario tener 2 tavlas, para crear una nueva tabla usamos ctrl + T. En esta nueva tabla
+    podemos utilizar llaves foráneas
+    En la seguda tabla es necesario agregar una llave foránea haciendo referencia a la tabla que se quiere relacionar, como sigue:
+        foreign key (columna vinculante) references + mombre de la otra tabla (columna de referencia de la otra tabla);
 
-
+    LEFT JOIN/RIGHT JOIN:
+        Pone en prioridad una de las dos tablas creadas para traer sus datos, si en la consulta se piden los datos de la primera taera
+        los datos de la segunda. 
+        EJ: select u.id, u.email, p.name from user u left join product p on u.id = p.created_by;
+       select u.id, u.email, p.name from user u right join product p on u.id = p.created_by;
+    INNER JOIN:
+        La consulta arroja la interseccón de ambas tablas.
+        EJ: select u.id, u.email, p.name from user u inner join product p on u.id = p.created_by;
+    CROSS JOIN:
+        La consulta arroja el producto cartesiano entre ambas tablas, puede arrojar muchos datos. Corresponde al registro de la primer 
+        tabla con cada registro de la segunda tabla.
+        EJ: select u.id, u.name, p.id, p.name from user u cross join product p;   
 Atajos y más:
     - Para ejecutar la consulta de la línea de código usar ctl + enter
     - Para comentar una línea usar dos guiones al principio de la misma (--)
