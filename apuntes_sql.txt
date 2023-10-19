@@ -138,7 +138,20 @@ JOIN
     CROSS JOIN:
         La consulta arroja el producto cartesiano entre ambas tablas, puede arrojar muchos datos. Corresponde al registro de la primer 
         tabla con cada registro de la segunda tabla.
-        EJ: select u.id, u.name, p.id, p.name from user u cross join product p;   
+        EJ: select u.id, u.name, p.id, p.name from user u cross join product p;
+GRUOP BY 
+    Se utiliza con instrucciones que tienden a agurupar elementos, por ejemplo count; lo que hará es tomar todos los registros en base a un 
+    pivote y los va a agrupar en registros completamente individuales.
+        EJ: SELECT count(id), marca from product group by marca;
+    Se peude hacer que las consultas de GORUP BY arrojen resultados que son relevantes.
+    EJ: SELECT count(p.id), u.name from product p left join user u on u.id = p.created_by group by created_by;
+    También se puede limitar la consulta a una determinada cantidad de datos con una condición.
+    EJ: SELECT count(p.id), u.name from product p left join user u 
+        on u.id = p.created_by group by p.created_by
+        having count(p.id) >=2;          
+DROP
+    Se utiliza para eliminar tabla:
+    DROP TABLE + nombre de la tabla;        
 Atajos y más:
     - Para ejecutar la consulta de la línea de código usar ctl + enter
     - Para comentar una línea usar dos guiones al principio de la misma (--)
