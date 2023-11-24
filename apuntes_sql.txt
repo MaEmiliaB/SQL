@@ -116,13 +116,15 @@ CONSULTAS:
             SELECT * FROM animales WHERE estado = 'feliz' AND tipo = 'chanchito';   
     Actualizar los registros dentro de la base de datos:
         UPDATE + tabla + SET + columna = nuevo valor where columna = valor definido;
-        ej:  UPDATE animales SET estado = 'feliz' WHERE id = 3;
+        ej:  UPDATE animales SET estado = 'feliz' WHERE id = 3
+    UNIQUE INDEX: Guarda los datos en la memoria ram para ser accedidos de manera más rápida.
+	
     Eliminar un registro:
         DELETE FROM tabla WHERE Columna = dato; (esto arroja un error porque MySQL tiene un modo seguro, hay que desactivarlo)
         ej: DELETE from animales where estado = 'feliz';
             DELETE from animales where id = 1; 
 JOIN
-    Consiste en unir dos tablas relacionandolas. Es necesario tener 2 tavlas, para crear una nueva tabla usamos ctrl + T. En esta nueva tabla
+    Consiste en unir dos tablas relacionandolas. Es necesario tener 2 tablas, para crear una nueva tabla usamos ctrl + T. En esta nueva tabla
     podemos utilizar llaves foráneas
     En la seguda tabla es necesario agregar una llave foránea haciendo referencia a la tabla que se quiere relacionar, como sigue:
         foreign key (columna vinculante) references + mombre de la otra tabla (columna de referencia de la otra tabla);
@@ -139,9 +141,9 @@ JOIN
         La consulta arroja el producto cartesiano entre ambas tablas, puede arrojar muchos datos. Corresponde al registro de la primer 
         tabla con cada registro de la segunda tabla.
         EJ: select u.id, u.name, p.id, p.name from user u cross join product p;
+
 GRUOP BY 
-    Se utiliza con instrucciones que tienden a agurupar elementos, por ejemplo count; lo que hará es tomar todos los registros en base a un 
-    pivote y los va a agrupar en registros completamente individuales.
+    Se utiliza con instrucciones que tienden a agurupar elementos, por ejemplo count; lo que hará es tomar todos los registros en base a un pivote y los va a agrupar en registros completamente individuales.
         EJ: SELECT count(id), marca from product group by marca;
     Se peude hacer que las consultas de GORUP BY arrojen resultados que son relevantes.
     EJ: SELECT count(p.id), u.name from product p left join user u on u.id = p.created_by group by created_by;
@@ -155,3 +157,14 @@ DROP
 Atajos y más:
     - Para ejecutar la consulta de la línea de código usar ctl + enter
     - Para comentar una línea usar dos guiones al principio de la misma (--)
+
+Cardinalidad:
+	La cardinalidad es una restricción en una relación que especifica el número de instancias de entidad que una entidad específica puede estar relacionada a través de la relación. 
+
+Las tres clasificaciones son: uno a uno, uno a muchos y muchos a muchos.
+
+Uno a uno: Una entidad del conjunto de entidades A puede asociarse con a lo sumo una entidad del conjunto de entidades B y viceversa.
+Uno a muchos: Una entidad del conjunto de entidades A puede asociarse con más de una entidad del conjunto de entidades B, sin embargo, una entidad del conjunto de entidades B puede asociarse con, como máximo a una entidad.
+Muchos a uno: Más de una entidad del conjunto de entidades A puede asociarse como máximo con una entidad del conjunto de entidades B, sin embargo, una entidad del conjunto de entidades B puede asociarse con más de una entidad del conjunto de entidades A.
+Relación de muchos a muchos: Las relaciones de muchos a muchos tienen "muchos" especificados para ambas cardinalidades, y también son muy comunes.
+

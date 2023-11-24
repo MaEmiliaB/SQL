@@ -18,3 +18,4 @@ SELECT * FROM user;
 SELECT * FROM user limit 1;
 SELECT * FROM user;
 SELECT id, name as nombre from user;
+
